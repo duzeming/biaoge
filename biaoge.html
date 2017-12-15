@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        border: 0;
+        list-style: none;
+    }
+    body{
+        background-color: #F6F6F6;
+    }
+    .form{
+        width: 600px;
+        height: auto;
+        margin: 20px auto;
+        padding: 10px 20px;
+        border-radius: 3px;
+        border: 1px solid #CCCCCC;
+        text-align: center;
+    }
+    table{
+        width: 100%;
+        height: auto;
+        border-collapse: collapse;
+    }
+    td,th{
+        border: 1px solid #DFDFDF;
+    }
+    tr:nth-of-type(2n){
+        background: #F6F6F6;
+    }
+    tr:nth-of-type(2n+1){
+        background: #e4ecff;
+    }
+    button{
+        width: 100%;
+        height: auto;
+        margin: 10px auto;
+        background-color: #96f2ff;
+        font-size: 16px;
+        color: #FFF;
+        /*outline: none;*/
+    }
+    input{
+        width: 50px;
+        height: auto;
+    }
+    .bon{
+        width: 100%;
+        height: 50px;
+    }
+
+</style>
+<body>
+    <div class="form">
+        <table>
+            <tr>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>籍贯</th>
+                <th>电话</th>
+                <th>删除</th>
+            </tr>
+            <tr>
+                <td>张三</td>
+                <td>男</td>
+                <td>20</td>
+                <td>汉</td>
+                <td>123456</td>
+                <td><button  class="del">删除</button></td>
+            </tr>
+            <tr>
+                <td>张三</td>
+                <td>男</td>
+                <td>20</td>
+                <td>汉</td>
+                <td>123456</td>
+                <td><button  class="del">删除</button></td>
+            </tr>
+            <tr>
+                <td>张三</td>
+                <td>男</td>
+                <td>20</td>
+                <td>汉</td>
+                <td>123456</td>
+                <td><button  class="del">删除</button></td>
+            </tr>
+            <tr>
+                <td>张三</td>
+                <td>男</td>
+                <td>20</td>
+                <td>汉</td>
+                <td>123456</td>
+                <td><button  class="del">删除</button></td>
+            </tr>
+            <tr>
+                <td>张三</td>
+                <td>男</td>
+                <td>20</td>
+                <td>汉</td>
+                <td>123456</td>
+                <td><button  class="del">删除</button></td>
+            </tr>
+        </table>
+        <button class="bon">
+            添加
+        </button>
+
+    </div>
+</body>
+</html>
+<script>
+
+    window.onload = function () {
+        let table = document.querySelector('tbody');
+//        console.log(table);
+        table.ondblclick = function (e) {
+//            双击事件
+            let element = e.target;
+
+            if(element.nodeName == 'TD' && element.className!=del){
+                let old = element.innerText;
+//                获取文本框的值
+                element.innerText= "";
+//                文本框为空
+                let inpus = document.createElement('input');
+                element.appendChild(inpus);
+//                添加一个标签
+                inpus.value = old;
+//                赋值给文本框
+                inpus.onblur = function () {
+//                    光标移出事件
+                    let now = inpus.value;
+                    element.removeChild(inpus);
+//                    删除input标签
+                    element.innerText = now;
+//                    再把新的值给了文本框
+
+                }
+            }else if(element.nodeName = 'BUTTON'){
+                let trs = element.parentNode;
+                table.removeChild(trs);
+        }
+        }
+        let button = document.querySelector('.bon');
+        console.log(button);
+        button.ondblclick = function () {
+            table.innerText = table.innerText +  `
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><button  class="del">删除</button></td>
+            </tr>
+            `;
+        }
+    }
+</script>
